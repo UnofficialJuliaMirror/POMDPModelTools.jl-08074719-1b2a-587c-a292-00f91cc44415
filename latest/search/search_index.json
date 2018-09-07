@@ -1,0 +1,39 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "About\n\n\nPOMDPModelTools is a collection of interface extensions and tools to make writing models and solvers for \nPOMDPs.jl\n easier.\n\n\n\n\nDistribution Tools\n\n\nWeighted Iteration\n\n\n\n\n\n\nDistributions\n\n\nSparse Categorical (\nSparseCat\n)\n\n\nBool Distribution\n\n\nDeterministic\n\n\n\n\n\n\nAbout", 
+            "title": "About"
+        }, 
+        {
+            "location": "/#about", 
+            "text": "POMDPModelTools is a collection of interface extensions and tools to make writing models and solvers for  POMDPs.jl  easier.   Distribution Tools  Weighted Iteration    Distributions  Sparse Categorical ( SparseCat )  Bool Distribution  Deterministic    About", 
+            "title": "About"
+        }, 
+        {
+            "location": "/distributions/", 
+            "text": "Distributions\n\n\nPOMDPModelTools contains several utility distributions to be used in the POMDPs \ntransition\n and \nobservation\n functions. These implement the appropriate methods of the functions in the \ndistributions interface\n.\n\n\n\n\nSparse Categorical (\nSparseCat\n)\n\n\nSparseCat\n is a sparse categorical distribution which is specified by simply providing a list of possible values (states or observations) and the probabilities corresponding to those particular objects.\n\n\nExample: \nSparseCat([1,2,3], [0.1,0.2,0.7])\n is a categorical distribution that assignes probability 0.1 to \n1\n, 0.2 to \n2\n, 0.7 to \n3\n, and 0 to all other values.\n\n\n#\n\n\nPOMDPModelTools.SparseCat\n \n \nType\n.\n\n\nSparseCat(values, probabilities)\n\n\n\n\nCreate a sparse categorical distribution.\n\n\nvalues\n is an iterable object containing the possible values (can be of any type) in the distribution that have nonzero probability. \nprobabilities\n is an iterable object that contains the associated probabilities.\n\n\nThis is optimized for value iteration with a fast implementation of \nweighted_iterator\n. Both \npdf\n and \nrand\n are order n.\n\n\nsource\n\n\n\n\nBool Distribution\n\n\n#\n\n\nPOMDPModelTools.BoolDistribution\n \n \nType\n.\n\n\nBoolDistribution(p_true)\n\n\n\n\nCreate a distribution over Boolean values (\ntrue\n or \nfalse\n).\n\n\np_true\n is the probability of the \ntrue\n outcome; the probability of \nfalse\n is 1-\np_true\n.\n\n\nsource\n\n\n\n\nDeterministic\n\n\n#\n\n\nPOMDPModelTools.Deterministic\n \n \nType\n.\n\n\nDetrministic(value)\n\n\n\n\nCreate a deterministic distribution over only one value.\n\n\nThis is intended to be used when a distribution is required, but the outcome is deterministic. It is equivalent to a Kronecker Delta distribution.\n\n\nsource", 
+            "title": "Distributions"
+        }, 
+        {
+            "location": "/distributions/#distributions", 
+            "text": "POMDPModelTools contains several utility distributions to be used in the POMDPs  transition  and  observation  functions. These implement the appropriate methods of the functions in the  distributions interface .", 
+            "title": "Distributions"
+        }, 
+        {
+            "location": "/distributions/#sparse-categorical-sparsecat", 
+            "text": "SparseCat  is a sparse categorical distribution which is specified by simply providing a list of possible values (states or observations) and the probabilities corresponding to those particular objects.  Example:  SparseCat([1,2,3], [0.1,0.2,0.7])  is a categorical distribution that assignes probability 0.1 to  1 , 0.2 to  2 , 0.7 to  3 , and 0 to all other values.  #  POMDPModelTools.SparseCat     Type .  SparseCat(values, probabilities)  Create a sparse categorical distribution.  values  is an iterable object containing the possible values (can be of any type) in the distribution that have nonzero probability.  probabilities  is an iterable object that contains the associated probabilities.  This is optimized for value iteration with a fast implementation of  weighted_iterator . Both  pdf  and  rand  are order n.  source", 
+            "title": "Sparse Categorical (SparseCat)"
+        }, 
+        {
+            "location": "/distributions/#bool-distribution", 
+            "text": "#  POMDPModelTools.BoolDistribution     Type .  BoolDistribution(p_true)  Create a distribution over Boolean values ( true  or  false ).  p_true  is the probability of the  true  outcome; the probability of  false  is 1- p_true .  source", 
+            "title": "Bool Distribution"
+        }, 
+        {
+            "location": "/distributions/#deterministic", 
+            "text": "#  POMDPModelTools.Deterministic     Type .  Detrministic(value)  Create a deterministic distribution over only one value.  This is intended to be used when a distribution is required, but the outcome is deterministic. It is equivalent to a Kronecker Delta distribution.  source", 
+            "title": "Deterministic"
+        }
+    ]
+}
