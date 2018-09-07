@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Interface ext - POMDPModelTools.jl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../assets/Documenter.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Interface ext";
+    var mkdocs_page_input_path = "interface_ext.md";
+    var mkdocs_page_url = "/interface_ext/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> POMDPModelTools.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../convenience/">Convenience</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../distributions/">Distributions</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Interface ext</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#interface-extensions">Interface Extensions</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#weighted-iteration">Weighted Iteration</a></li>
+        
+            <li><a class="toctree-l3" href="#observation-weight">Observation Weight</a></li>
+        
+            <li><a class="toctree-l3" href="#ordered-spaces">Ordered Spaces</a></li>
+        
+            <li><a class="toctree-l3" href="#info">Info</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../model_transformations/">Model transformations</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">POMDPModelTools.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Interface ext</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/edit/master/docs/interface_ext.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Interface-Extensions-1'></a></p>
+<h1 id="interface-extensions">Interface Extensions</h1>
+<p>POMDPModelTools contains several interface extensions that provide shortcuts and standardized ways of dealing with extra data.</p>
+<p>Programmers should use these functions whenever possible in case optimized implementations are available, but all of the functions have default implementations based on the core POMDPs.jl interface. Thus, if the core interface is implemented, all of these functions will also be available.</p>
+<p><a id='Weighted-Iteration-1'></a></p>
+<h2 id="weighted-iteration">Weighted Iteration</h2>
+<p>Many solution techniques, for example value iteration, require iteration through the support of a distribution and evaluating the probability mass for each value. In some cases, looking up the probability mass is expensive, so it is more efficient to iterate through value =&gt; probability pairs. <code>weighted_iterator</code> provides a standard interface for this.</p>
+<p><a id='POMDPModelTools.weighted_iterator' href='#POMDPModelTools.weighted_iterator'>#</a>
+<strong><code>POMDPModelTools.weighted_iterator</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>weighted_iterator(d)
+</code></pre>
+
+<p>Return an iterator through pairs of the values and probabilities in distribution <code>d</code>.</p>
+<p>This is designed to speed up value iteration. Distributions are encouraged to provide a custom optimized implementation if possible.</p>
+<p><strong>Example</strong></p>
+<pre><code class="julia-repl">julia&gt; d = BoolDistribution(0.7)
+BoolDistribution(0.7)
+
+julia&gt; collect(weighted_iterator(d))
+2-element Array{Pair{Bool,Float64},1}:
+  true =&gt; 0.7
+ false =&gt; 0.3
+</code></pre>
+
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/distributions/weighted_iteration.jl#L1-L18' class='documenter-source'>source</a><br></p>
+<p><a id='Observation-Weight-1'></a></p>
+<h2 id="observation-weight">Observation Weight</h2>
+<p>Sometimes, e.g. in particle filtering, the relative likelihood of an observation is required in addition to a generative model, and it is often tedious to implement a custom observation distribution type. For this case, the shortcut function <code>obs_weight</code> is provided.</p>
+<p><a id='POMDPModelTools.obs_weight' href='#POMDPModelTools.obs_weight'>#</a>
+<strong><code>POMDPModelTools.obs_weight</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>obs_weight(pomdp, sp, o)
+obs_weight(pomdp, a, sp, o)
+obs_weight(pomdp, s, a, sp, o)
+</code></pre>
+
+<p>Return a weight proportional to the likelihood of receiving observation o from state sp (and a and s if they are present).</p>
+<p>This is a useful shortcut for particle filtering so that the observation distribution does not have to be represented.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/obs_weight.jl#L4-L12' class='documenter-source'>source</a><br></p>
+<p><a id='Ordered-Spaces-1'></a></p>
+<h2 id="ordered-spaces">Ordered Spaces</h2>
+<p>It is often useful to have a list of states, actions, or observations ordered consistently with the respective <code>_index</code> function from POMDPs.jl. Since the POMDPs.jl interface does not demand that spaces be ordered consistently with <code>_index</code>, the <code>states</code>, <code>actions</code>, and <code>observations</code> functions are not sufficient. Thus POMDPModelTools provides <code>ordered_actions</code>, <code>ordered_states</code>, and <code>ordered_observations</code> to provide this capability.</p>
+<p><a id='POMDPModelTools.ordered_actions' href='#POMDPModelTools.ordered_actions'>#</a>
+<strong><code>POMDPModelTools.ordered_actions</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>ordered_actions(mdp)
+</code></pre>
+
+<p>Return an <code>AbstractVector</code> of actions ordered according to <code>actionindex(mdp, a)</code>.</p>
+<p><code>ordered_actions(mdp)</code> will always return an <code>AbstractVector{A}</code> <code>v</code> containing all of the actions in <code>actions(mdp)</code> in the order such that <code>actionindex(mdp, v[i]) == i</code>. You may wish to override this for your problem for efficiency.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/ordered_spaces.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a id='POMDPModelTools.ordered_states' href='#POMDPModelTools.ordered_states'>#</a>
+<strong><code>POMDPModelTools.ordered_states</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>ordered_states(mdp)
+</code></pre>
+
+<p>Return an <code>AbstractVector</code> of states ordered according to <code>stateindex(mdp, a)</code>.</p>
+<p><code>ordered_states(mdp)</code> will always return a <code>AbstractVector{A}</code> <code>v</code> containing all of the states in <code>states(mdp)</code> in the order such that <code>stateindex(mdp, v[i]) == i</code>. You may wish to override this for your problem for efficiency.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/ordered_spaces.jl#L12-L18' class='documenter-source'>source</a><br></p>
+<p><a id='POMDPModelTools.ordered_observations' href='#POMDPModelTools.ordered_observations'>#</a>
+<strong><code>POMDPModelTools.ordered_observations</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>ordered_observations(pomdp)
+</code></pre>
+
+<p>Return an <code>AbstractVector</code> of observations ordered according to <code>obsindex(pomdp, a)</code>.</p>
+<p><code>ordered_observations(mdp)</code> will always return a <code>AbstractVector{A}</code> <code>v</code> containing all of the observations in <code>observations(pomdp)</code> in the order such that <code>obsindex(pomdp, v[i]) == i</code>. You may wish to override this for your problem for efficiency.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/ordered_spaces.jl#L21-L27' class='documenter-source'>source</a><br></p>
+<p><a id='Info-1'></a></p>
+<h2 id="info">Info</h2>
+<p>It is often the case that useful information besides the belief, state, action, etc is generated by a function in POMDPs.jl. This information can be useful for debugging or understanding the behavior of a solver, updater, or problem. The info interface provides a standard way for problems, policies, solvers or updaters to output this information. The recording simulators from <a href="https://github.com/JuliaPOMDP/POMDPSimulators.jl">POMDPSimulators.jl</a> automatically record this information.</p>
+<p><a id='POMDPModelTools.generate_sri' href='#POMDPModelTools.generate_sri'>#</a>
+<strong><code>POMDPModelTools.generate_sri</code></strong> &mdash; <em>Function</em>.</p>
+<p>Return a tuple containing the next state and reward and information (usually a <code>Dict</code> or <code>nothing</code>) from that step.</p>
+<p>By default, returns <code>nothing</code> as info.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/info.jl#L4-L8' class='documenter-source'>source</a><br></p>
+<p><a id='POMDPModelTools.generate_sori' href='#POMDPModelTools.generate_sori'>#</a>
+<strong><code>POMDPModelTools.generate_sori</code></strong> &mdash; <em>Function</em>.</p>
+<p>Return a tuple containing the next state, observation, and reward and information (usually a <code>Dict</code> or <code>nothing</code>) from that step.</p>
+<p>By default, returns <code>nothing</code> as info. </p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/info.jl#L13-L17' class='documenter-source'>source</a><br></p>
+<p><a id='POMDPModelTools.action_info' href='#POMDPModelTools.action_info'>#</a>
+<strong><code>POMDPModelTools.action_info</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>a, ai = action_info(policy, x)
+</code></pre>
+
+<p>Return a tuple containing the action determined by policy 'p' at state or belief 'x' and information (usually a <code>Dict</code> or <code>nothing</code>) from the calculation of that action.</p>
+<p>By default, returns <code>nothing</code> as info.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/info.jl#L22-L28' class='documenter-source'>source</a><br></p>
+<p><a id='POMDPModelTools.solve_info' href='#POMDPModelTools.solve_info'>#</a>
+<strong><code>POMDPModelTools.solve_info</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>policy, si = solve_info(solver, problem)
+</code></pre>
+
+<p>Return a tuple containing the policy determined by a solver and information (usually a <code>Dict</code> or <code>nothing</code>) from the calculation of that policy.</p>
+<p>By default, returns <code>nothing</code> as info.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/info.jl#L33-L39' class='documenter-source'>source</a><br></p>
+<p><a id='POMDPModelTools.update_info' href='#POMDPModelTools.update_info'>#</a>
+<strong><code>POMDPModelTools.update_info</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>bp, i = update_info(updater, b, a, o)
+</code></pre>
+
+<p>Return a tuple containing the new belief and information (usually a <code>Dict</code> or <code>nothing</code>) from the belief update.</p>
+<p>By default, returns <code>nothing</code> as info.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/ab0a8c9d730533f014cd9fbcef972eec6b2554fe/src/info.jl#L44-L50' class='documenter-source'>source</a><br></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../model_transformations/" class="btn btn-neutral float-right" title="Model transformations">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../distributions/" class="btn btn-neutral" title="Distributions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../distributions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../model_transformations/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      <script src="../assets/mathjaxhelper.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
