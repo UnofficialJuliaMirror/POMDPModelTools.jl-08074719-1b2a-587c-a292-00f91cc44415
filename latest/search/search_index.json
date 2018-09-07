@@ -3,12 +3,27 @@
         {
             "location": "/", 
             "text": "About\n\n\nPOMDPModelTools is a collection of interface extensions and tools to make writing models and solvers for \nPOMDPs.jl\n easier.\n\n\n\n\nDistribution Tools\n\n\nWeighted Iteration\n\n\n\n\n\n\nDistributions\n\n\nSparse Categorical (\nSparseCat\n)\n\n\nBool Distribution\n\n\nDeterministic\n\n\n\n\n\n\nAbout", 
-            "title": "About"
+            "title": "Home"
         }, 
         {
             "location": "/#about", 
             "text": "POMDPModelTools is a collection of interface extensions and tools to make writing models and solvers for  POMDPs.jl  easier.   Distribution Tools  Weighted Iteration    Distributions  Sparse Categorical ( SparseCat )  Bool Distribution  Deterministic    About", 
             "title": "About"
+        }, 
+        {
+            "location": "/distribution_tools/", 
+            "text": "Distribution Tools\n\n\nPOMDPModelTools contains an interface extension to make interaction with certain distributions more efficient in some cases.\n\n\n\n\nWeighted Iteration\n\n\n#\n\n\nPOMDPModelTools.weighted_iterator\n \n \nFunction\n.\n\n\nweighted_iterator(d)\n\n\n\n\nReturn an iterator through pairs of the values and probabilities in distribution \nd\n.\n\n\nThis is designed to speed up value iteration. Distributions are encouraged to provide a custom optimized implementation if possible.\n\n\nExample\n\n\njulia\n d = BoolDistribution(0.7)\nBoolDistribution(0.7)\n\njulia\n collect(weighted_iterator(d))\n2-element Array{Pair{Bool,Float64},1}:\n  true =\n 0.7\n false =\n 0.3\n\n\n\n\nsource", 
+            "title": "Distribution tools"
+        }, 
+        {
+            "location": "/distribution_tools/#distribution-tools", 
+            "text": "POMDPModelTools contains an interface extension to make interaction with certain distributions more efficient in some cases.", 
+            "title": "Distribution Tools"
+        }, 
+        {
+            "location": "/distribution_tools/#weighted-iteration", 
+            "text": "#  POMDPModelTools.weighted_iterator     Function .  weighted_iterator(d)  Return an iterator through pairs of the values and probabilities in distribution  d .  This is designed to speed up value iteration. Distributions are encouraged to provide a custom optimized implementation if possible.  Example  julia  d = BoolDistribution(0.7)\nBoolDistribution(0.7)\n\njulia  collect(weighted_iterator(d))\n2-element Array{Pair{Bool,Float64},1}:\n  true =  0.7\n false =  0.3  source", 
+            "title": "Weighted Iteration"
         }, 
         {
             "location": "/distributions/", 
