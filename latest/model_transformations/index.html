@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Distribution tools - POMDPModelTools.jl</title>
+  <title>Model transformations - POMDPModelTools.jl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Distribution tools";
-    var mkdocs_page_input_path = "distribution_tools.md";
-    var mkdocs_page_url = "/distribution_tools/";
+    var mkdocs_page_name = "Model transformations";
+    var mkdocs_page_input_path = "model_transformations.md";
+    var mkdocs_page_url = "/model_transformations/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -58,21 +58,9 @@
     <a class="" href="../convenience/">Convenience</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Distribution tools</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#distribution-tools">Distribution Tools</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#weighted-iteration">Weighted Iteration</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../distribution_tools/">Distribution tools</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -80,9 +68,23 @@
     <a class="" href="../distributions/">Distributions</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../model_transformations/">Model transformations</a>
+    <a class="current" href="./">Model transformations</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#model-transformations">Model Transformations</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#fully-observable-pomdp">Fully Observable POMDP</a></li>
+        
+            <li><a class="toctree-l3" href="#generative-belief-mdp">Generative Belief MDP</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -107,10 +109,10 @@
     
       
     
-    <li>Distribution tools</li>
+    <li>Model transformations</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/edit/master/docs/distribution_tools.md"
+        <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/edit/master/docs/model_transformations.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -120,29 +122,46 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Distribution-Tools-1'></a></p>
-<h1 id="distribution-tools">Distribution Tools</h1>
-<p>POMDPModelTools contains an interface extension to make interaction with certain distributions more efficient in some cases.</p>
-<p><a id='Weighted-Iteration-1'></a></p>
-<h2 id="weighted-iteration">Weighted Iteration</h2>
-<p><a id='POMDPModelTools.weighted_iterator' href='#POMDPModelTools.weighted_iterator'>#</a>
-<strong><code>POMDPModelTools.weighted_iterator</code></strong> &mdash; <em>Function</em>.</p>
-<pre><code>weighted_iterator(d)
+                <p><a id='Model-Transformations-1'></a></p>
+<h1 id="model-transformations">Model Transformations</h1>
+<p>POMDPModelTools contains several tools for transforming problems into other classes so that they can be used by different solvers.</p>
+<p><a id='Fully-Observable-POMDP-1'></a></p>
+<h2 id="fully-observable-pomdp">Fully Observable POMDP</h2>
+<p><a id='POMDPModelTools.FullyObservablePOMDP' href='#POMDPModelTools.FullyObservablePOMDP'>#</a>
+<strong><code>POMDPModelTools.FullyObservablePOMDP</code></strong> &mdash; <em>Type</em>.</p>
+<pre><code>FullyObservablePOMDP(mdp)
 </code></pre>
 
-<p>Return an iterator through pairs of the values and probabilities in distribution <code>d</code>.</p>
-<p>This is designed to speed up value iteration. Distributions are encouraged to provide a custom optimized implementation if possible.</p>
-<p><strong>Example</strong></p>
-<pre><code class="julia-repl">julia&gt; d = BoolDistribution(0.7)
-BoolDistribution(0.7)
+<p>Turn <code>MDP</code> <code>mdp</code> into a <code>POMDP</code> where the observations are the states of the MDP.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/fa6f45cb204b0f844dc7ec3c0c9828cb3f9e19e7/src/fully_observable_pomdp.jl#L1-L5' class='documenter-source'>source</a><br></p>
+<p><a id='Generative-Belief-MDP-1'></a></p>
+<h2 id="generative-belief-mdp">Generative Belief MDP</h2>
+<p>Every POMDP is an MDP on the belief space <code>GenerativeBeliefMDP</code> creates a generative model for that MDP.</p>
+<aside class="warning"> The reward generated by the `GenerativeBeliefMDP` is the reward for a *single state sampled from the belief*; it is not the expected reward for that belief transition (though, in expectation, they are equivalent of course). Implementing the model with the expected reward requires a custom implementation because belief updaters do not typically deal with reward. </aside>
 
-julia&gt; collect(weighted_iterator(d))
-2-element Array{Pair{Bool,Float64},1}:
-  true =&gt; 0.7
- false =&gt; 0.3
+<p><a id='POMDPModelTools.GenerativeBeliefMDP' href='#POMDPModelTools.GenerativeBeliefMDP'>#</a>
+<strong><code>POMDPModelTools.GenerativeBeliefMDP</code></strong> &mdash; <em>Type</em>.</p>
+<pre><code>GenerativeBeliefMDP(pomdp, updater)
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/fa6f45cb204b0f844dc7ec3c0c9828cb3f9e19e7/src/distributions/weighted_iteration.jl#L1-L18' class='documenter-source'>source</a><br></p>
+<p>Create a generative model of the belief MDP corresponding to POMDP <code>pomdp</code> with belief updates performed by <code>updater</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/fa6f45cb204b0f844dc7ec3c0c9828cb3f9e19e7/src/generative_belief_mdp.jl#L1-L5' class='documenter-source'>source</a><br></p>
+<p><a id='Example-1'></a></p>
+<h3 id="example">Example</h3>
+<pre><code class="julia">using POMDPModels
+using POMDPModelTools
+using BeliefUpdaters
+
+pomdp = BabyPOMDP()
+updater = DiscreteUpdater(pomdp)
+
+belief_mdp = GenerativeBeliefMDP(pomdp, updater)
+@show statetype(belief_mdp) # POMDPModels.BoolDistribution
+
+for (a, r, sp) in stepthrough(belief_mdp, RandomPolicy(belief_mdp), &quot;a,r,sp&quot;, max_steps=5)
+    @show a, r, sp
+end
+</code></pre>
               
             </div>
           </div>
@@ -150,10 +169,8 @@ julia&gt; collect(weighted_iterator(d))
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../distributions/" class="btn btn-neutral float-right" title="Distributions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../convenience/" class="btn btn-neutral" title="Convenience"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../distributions/" class="btn btn-neutral" title="Distributions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -181,10 +198,8 @@ julia&gt; collect(weighted_iterator(d))
           <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../convenience/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../distributions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../distributions/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

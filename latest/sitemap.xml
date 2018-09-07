@@ -6,12 +6,22 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>/convenience/</loc>
+     <lastmod>2018-09-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>/distribution_tools/</loc>
      <lastmod>2018-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/distributions/</loc>
+     <lastmod>2018-09-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/model_transformations/</loc>
      <lastmod>2018-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
