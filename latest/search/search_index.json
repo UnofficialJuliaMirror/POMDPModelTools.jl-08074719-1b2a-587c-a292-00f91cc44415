@@ -12,12 +12,12 @@
         }, 
         {
             "location": "/convenience/", 
-            "text": "Convenience\n\n\nPOMDPModelTools contains default implementations for some POMDPs.jl functions, including \nactions\n, \nn_actions\n, \naction_index\n, etc. for some obvious cases. This allows some obvious implementations to be skipped.\n\n\nFor instance, if an MDP with a Bool action type is created, the obvious \nactions\n method is already implemented:\n\n\njulia\n using POMDPs; using POMDPModelTools\n\njulia\n struct BoolMDP \n: MDP{Bool, Bool} end\n\njulia\n actions(BoolMDP())\n(true, false)\n\n\n\n\nFor a complete list of default implementations, see \nconvenient_implementations.jl\n.", 
+            "text": "Convenience\n\n\nPOMDPModelTools contains default implementations for some POMDPs.jl functions, including \nactions\n, \nn_actions\n, \naction_index\n, etc. for some obvious cases. This allows some obvious implementations to be skipped.\n\n\nFor instance, if an MDP with a Bool action type is created, the obvious \nactions\n method is already implemented:\n\n\njulia\n using POMDPs; using POMDPModelTools\n\njulia\n struct BoolMDP \n: MDP{Bool, Bool} end\n\njulia\n actions(BoolMDP())\n(true, false)\n\n\n\n\nFor a complete list of default implementations, see \nconvenient_implementations.jl\n and \ndistributions_jl.jl\n.", 
             "title": "Convenience"
         }, 
         {
             "location": "/convenience/#convenience", 
-            "text": "POMDPModelTools contains default implementations for some POMDPs.jl functions, including  actions ,  n_actions ,  action_index , etc. for some obvious cases. This allows some obvious implementations to be skipped.  For instance, if an MDP with a Bool action type is created, the obvious  actions  method is already implemented:  julia  using POMDPs; using POMDPModelTools\n\njulia  struct BoolMDP  : MDP{Bool, Bool} end\n\njulia  actions(BoolMDP())\n(true, false)  For a complete list of default implementations, see  convenient_implementations.jl .", 
+            "text": "POMDPModelTools contains default implementations for some POMDPs.jl functions, including  actions ,  n_actions ,  action_index , etc. for some obvious cases. This allows some obvious implementations to be skipped.  For instance, if an MDP with a Bool action type is created, the obvious  actions  method is already implemented:  julia  using POMDPs; using POMDPModelTools\n\njulia  struct BoolMDP  : MDP{Bool, Bool} end\n\njulia  actions(BoolMDP())\n(true, false)  For a complete list of default implementations, see  convenient_implementations.jl  and  distributions_jl.jl .", 
             "title": "Convenience"
         }, 
         {
