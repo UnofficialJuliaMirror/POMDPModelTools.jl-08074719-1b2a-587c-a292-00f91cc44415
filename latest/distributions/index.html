@@ -94,6 +94,11 @@
     <a class="" href="../utility_types/">Utility types</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../visualization/">Visualization</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -144,7 +149,7 @@
 <p>Create a sparse categorical distribution.</p>
 <p><code>values</code> is an iterable object containing the possible values (can be of any type) in the distribution that have nonzero probability. <code>probabilities</code> is an iterable object that contains the associated probabilities.</p>
 <p>This is optimized for value iteration with a fast implementation of <code>weighted_iterator</code>. Both <code>pdf</code> and <code>rand</code> are order n.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/3d519d4d0fe0a333de517ee1ea97d1e203e57908/src/distributions/sparse_cat.jl#L1-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/c7e63f4e4f66cb241f823c75c52d0549e306d2eb/src/distributions/sparse_cat.jl#L1-L9' class='documenter-source'>source</a><br></p>
 <p><a id='Bool-Distribution-1'></a></p>
 <h2 id="bool-distribution">Bool Distribution</h2>
 <p><a id='POMDPModelTools.BoolDistribution' href='#POMDPModelTools.BoolDistribution'>#</a>
@@ -154,7 +159,7 @@
 
 <p>Create a distribution over Boolean values (<code>true</code> or <code>false</code>).</p>
 <p><code>p_true</code> is the probability of the <code>true</code> outcome; the probability of <code>false</code> is 1-<code>p_true</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/3d519d4d0fe0a333de517ee1ea97d1e203e57908/src/distributions/bool.jl#L1-L7' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/c7e63f4e4f66cb241f823c75c52d0549e306d2eb/src/distributions/bool.jl#L1-L7' class='documenter-source'>source</a><br></p>
 <p><a id='Deterministic-1'></a></p>
 <h2 id="deterministic">Deterministic</h2>
 <p><a id='POMDPModelTools.Deterministic' href='#POMDPModelTools.Deterministic'>#</a>
@@ -164,7 +169,7 @@
 
 <p>Create a deterministic distribution over only one value.</p>
 <p>This is intended to be used when a distribution is required, but the outcome is deterministic. It is equivalent to a Kronecker Delta distribution.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/3d519d4d0fe0a333de517ee1ea97d1e203e57908/src/distributions/deterministic.jl#L1-L7' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/c7e63f4e4f66cb241f823c75c52d0549e306d2eb/src/distributions/deterministic.jl#L1-L7' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
