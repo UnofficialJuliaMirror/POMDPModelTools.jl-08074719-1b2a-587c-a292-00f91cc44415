@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Convenience - POMDPModelTools.jl</title>
+  <title>Visualization - POMDPModelTools.jl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Convenience";
-    var mkdocs_page_input_path = "convenience.md";
-    var mkdocs_page_url = "/convenience/";
+    var mkdocs_page_name = "Visualization";
+    var mkdocs_page_input_path = "visualization.md";
+    var mkdocs_page_url = "/visualization/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -53,15 +53,9 @@
     <a class="" href="..">Home</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Convenience</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#convenience">Convenience</a></li>
-    
-
-    </ul>
+    <a class="" href="../convenience/">Convenience</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -84,9 +78,15 @@
     <a class="" href="../utility_types/">Utility types</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../visualization/">Visualization</a>
+    <a class="current" href="./">Visualization</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#visualization">Visualization</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -111,10 +111,10 @@
     
       
     
-    <li>Convenience</li>
+    <li>Visualization</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/edit/master/docs/convenience.md"
+        <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/edit/master/docs/visualization.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -124,19 +124,55 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Convenience-1'></a></p>
-<h1 id="convenience">Convenience</h1>
-<p>POMDPModelTools contains default implementations for some POMDPs.jl functions, including <code>actions</code>, <code>n_actions</code>, <code>action_index</code>, etc. for some obvious cases. This allows some obvious implementations to be skipped.</p>
-<p>For instance, if an MDP with a Bool action type is created, the obvious <code>actions</code> method is already implemented:</p>
-<pre><code class="julia-repl">julia&gt; using POMDPs; using POMDPModelTools
-
-julia&gt; struct BoolMDP &lt;: MDP{Bool, Bool} end
-
-julia&gt; actions(BoolMDP())
-(true, false)
+                <p><a id='Visualization-1'></a></p>
+<h1 id="visualization">Visualization</h1>
+<p>POMDPModelTools contains a basic visualization interface consisting of the <code>render</code> function.</p>
+<p>Problem writers should implement a method of this function so that their problem can be visualized in a variety of contexts including jupyter notebooks, web browsers, or saved as images or animations.</p>
+<p><a id='POMDPModelTools.render' href='#POMDPModelTools.render'>#</a>
+<strong><code>POMDPModelTools.render</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code>render(m::Union{MDP,POMDP}, step::NamedTuple)
 </code></pre>
 
-<p>For a complete list of default implementations, see <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/master/src/convenient_implementations.jl">convenient_implementations.jl</a> and <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/master/src/distributions/distributions_jl.jl">distributions_jl.jl</a>.</p>
+<p>Return a renderable representation of the step in problem <code>m</code>.</p>
+<p>The renderable representation may be anything that has <code>show(io, mime, x)</code> methods. It could be a plot, svg, Compose.jl context, Cairo context, or image.</p>
+<p><strong>Arguments</strong></p>
+<p><code>step</code> is a <code>NamedTuple</code> that contains the states, action, etc. corresponding to one transition in a simulation. It may have the following fields:</p>
+<ul>
+<li><code>t</code>: the time step index</li>
+<li><code>s</code>: the state at the beginning of the step</li>
+<li><code>a</code>: the action</li>
+<li><code>sp</code>: the state at the end of the step (s')</li>
+<li><code>r</code>: the reward for the step</li>
+<li><code>o</code>: the observation</li>
+<li><code>b</code>: the belief at the</li>
+<li><code>bp</code>: the belief at the end of the step</li>
+<li><code>i</code>: info from the model when the state transition was calculated</li>
+<li><code>ai</code>: info from the policy decision</li>
+<li><code>ui</code>: info from the belief update</li>
+</ul>
+<p>Keyword arguments are reserved for the problem implementer and can be used to control appearance, etc.</p>
+<p><strong>Important Notes</strong></p>
+<ul>
+<li><code>step</code> may not contain all of the elements listed above, so <code>render</code> should</li>
+</ul>
+<p>check for them and render only what is available</p>
+<ul>
+<li><code>o</code> typically corresponds to <code>sp</code>, so it is often be clearer for POMDPs to</li>
+</ul>
+<p>render <code>sp</code> rather than <code>s</code>.</p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/visualization.jl#L1-L31' class='documenter-source'>source</a><br></p>
+<p>Sometimes it is important to have control over how the problem is rendered with different mimetypes. One way to handle this is to have render return a custom type, e.g.</p>
+<pre><code class="julia">struct MyProblemVisualization
+    mdp::MyProblem
+    step::NamedTuple
+end
+
+POMDPModelTools.render(mdp, step) = MyProblemVisualization(mdp, step)
+</code></pre>
+
+<p>and then implement custom <code>show</code> methods, e.g.</p>
+<pre><code class="julia">show(io::IO, mime::MIME&quot;text/html&quot;, v::MyProblemVisualization)
+</code></pre>
               
             </div>
           </div>
@@ -144,10 +180,8 @@ julia&gt; actions(BoolMDP())
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../distributions/" class="btn btn-neutral float-right" title="Distributions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../utility_types/" class="btn btn-neutral" title="Utility types"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -175,10 +209,8 @@ julia&gt; actions(BoolMDP())
           <a href="https://github.com/JuliaPOMDP/POMDPModelTools.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../utility_types/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../distributions/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

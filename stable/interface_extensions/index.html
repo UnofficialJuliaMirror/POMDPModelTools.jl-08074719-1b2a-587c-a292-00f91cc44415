@@ -96,6 +96,11 @@
     <a class="" href="../utility_types/">Utility types</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../visualization/">Visualization</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -155,7 +160,7 @@ julia&gt; collect(weighted_iterator(d))
  false =&gt; 0.3
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/distributions/weighted_iteration.jl#L1-L18' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/distributions/weighted_iteration.jl#L1-L18' class='documenter-source'>source</a><br></p>
 <p><a id='Observation-Weight-1'></a></p>
 <h2 id="observation-weight">Observation Weight</h2>
 <p>Sometimes, e.g. in particle filtering, the relative likelihood of an observation is required in addition to a generative model, and it is often tedious to implement a custom observation distribution type. For this case, the shortcut function <code>obs_weight</code> is provided.</p>
@@ -168,7 +173,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return a weight proportional to the likelihood of receiving observation o from state sp (and a and s if they are present).</p>
 <p>This is a useful shortcut for particle filtering so that the observation distribution does not have to be represented.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/obs_weight.jl#L4-L12' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/obs_weight.jl#L4-L12' class='documenter-source'>source</a><br></p>
 <p><a id='Ordered-Spaces-1'></a></p>
 <h2 id="ordered-spaces">Ordered Spaces</h2>
 <p>It is often useful to have a list of states, actions, or observations ordered consistently with the respective <code>_index</code> function from POMDPs.jl. Since the POMDPs.jl interface does not demand that spaces be ordered consistently with <code>_index</code>, the <code>states</code>, <code>actions</code>, and <code>observations</code> functions are not sufficient. Thus POMDPModelTools provides <code>ordered_actions</code>, <code>ordered_states</code>, and <code>ordered_observations</code> to provide this capability.</p>
@@ -179,7 +184,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return an <code>AbstractVector</code> of actions ordered according to <code>actionindex(mdp, a)</code>.</p>
 <p><code>ordered_actions(mdp)</code> will always return an <code>AbstractVector{A}</code> <code>v</code> containing all of the actions in <code>actions(mdp)</code> in the order such that <code>actionindex(mdp, v[i]) == i</code>. You may wish to override this for your problem for efficiency.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/ordered_spaces.jl#L3-L9' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/ordered_spaces.jl#L3-L9' class='documenter-source'>source</a><br></p>
 <p><a id='POMDPModelTools.ordered_states' href='#POMDPModelTools.ordered_states'>#</a>
 <strong><code>POMDPModelTools.ordered_states</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>ordered_states(mdp)
@@ -187,7 +192,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return an <code>AbstractVector</code> of states ordered according to <code>stateindex(mdp, a)</code>.</p>
 <p><code>ordered_states(mdp)</code> will always return a <code>AbstractVector{A}</code> <code>v</code> containing all of the states in <code>states(mdp)</code> in the order such that <code>stateindex(mdp, v[i]) == i</code>. You may wish to override this for your problem for efficiency.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/ordered_spaces.jl#L12-L18' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/ordered_spaces.jl#L12-L18' class='documenter-source'>source</a><br></p>
 <p><a id='POMDPModelTools.ordered_observations' href='#POMDPModelTools.ordered_observations'>#</a>
 <strong><code>POMDPModelTools.ordered_observations</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>ordered_observations(pomdp)
@@ -195,7 +200,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return an <code>AbstractVector</code> of observations ordered according to <code>obsindex(pomdp, a)</code>.</p>
 <p><code>ordered_observations(mdp)</code> will always return a <code>AbstractVector{A}</code> <code>v</code> containing all of the observations in <code>observations(pomdp)</code> in the order such that <code>obsindex(pomdp, v[i]) == i</code>. You may wish to override this for your problem for efficiency.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/ordered_spaces.jl#L21-L27' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/ordered_spaces.jl#L21-L27' class='documenter-source'>source</a><br></p>
 <p><a id='Info-Interface-1'></a></p>
 <h2 id="info-interface">Info Interface</h2>
 <p>It is often the case that useful information besides the belief, state, action, etc is generated by a function in POMDPs.jl. This information can be useful for debugging or understanding the behavior of a solver, updater, or problem. The info interface provides a standard way for problems, policies, solvers or updaters to output this information. The recording simulators from <a href="https://github.com/JuliaPOMDP/POMDPSimulators.jl">POMDPSimulators.jl</a> automatically record this information.</p>
@@ -203,12 +208,12 @@ obs_weight(pomdp, s, a, sp, o)
 <strong><code>POMDPModelTools.generate_sri</code></strong> &mdash; <em>Function</em>.</p>
 <p>Return a tuple containing the next state and reward and information (usually a <code>Dict</code> or <code>nothing</code>) from that step.</p>
 <p>By default, returns <code>nothing</code> as info.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/info.jl#L4-L8' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/info.jl#L4-L8' class='documenter-source'>source</a><br></p>
 <p><a id='POMDPModelTools.generate_sori' href='#POMDPModelTools.generate_sori'>#</a>
 <strong><code>POMDPModelTools.generate_sori</code></strong> &mdash; <em>Function</em>.</p>
 <p>Return a tuple containing the next state, observation, and reward and information (usually a <code>Dict</code> or <code>nothing</code>) from that step.</p>
 <p>By default, returns <code>nothing</code> as info. </p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/info.jl#L13-L17' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/info.jl#L13-L17' class='documenter-source'>source</a><br></p>
 <p><a id='POMDPModelTools.action_info' href='#POMDPModelTools.action_info'>#</a>
 <strong><code>POMDPModelTools.action_info</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>a, ai = action_info(policy, x)
@@ -216,7 +221,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return a tuple containing the action determined by policy 'p' at state or belief 'x' and information (usually a <code>Dict</code> or <code>nothing</code>) from the calculation of that action.</p>
 <p>By default, returns <code>nothing</code> as info.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/info.jl#L22-L28' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/info.jl#L22-L28' class='documenter-source'>source</a><br></p>
 <p><a id='POMDPModelTools.solve_info' href='#POMDPModelTools.solve_info'>#</a>
 <strong><code>POMDPModelTools.solve_info</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>policy, si = solve_info(solver, problem)
@@ -224,7 +229,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return a tuple containing the policy determined by a solver and information (usually a <code>Dict</code> or <code>nothing</code>) from the calculation of that policy.</p>
 <p>By default, returns <code>nothing</code> as info.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/info.jl#L33-L39' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/info.jl#L33-L39' class='documenter-source'>source</a><br></p>
 <p><a id='POMDPModelTools.update_info' href='#POMDPModelTools.update_info'>#</a>
 <strong><code>POMDPModelTools.update_info</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>bp, i = update_info(updater, b, a, o)
@@ -232,7 +237,7 @@ obs_weight(pomdp, s, a, sp, o)
 
 <p>Return a tuple containing the new belief and information (usually a <code>Dict</code> or <code>nothing</code>) from the belief update.</p>
 <p>By default, returns <code>nothing</code> as info.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/794178b848b087e522cc539a5ea31c20ee87e50b/src/info.jl#L44-L50' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/info.jl#L44-L50' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
