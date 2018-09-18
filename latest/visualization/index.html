@@ -127,7 +127,7 @@
                 <p><a id='Visualization-1'></a></p>
 <h1 id="visualization">Visualization</h1>
 <p>POMDPModelTools contains a basic visualization interface consisting of the <code>render</code> function.</p>
-<p>Problem writers should implement a method of this function so that their problem can be visualized in a variety of contexts including jupyter notebooks, </p>
+<p>Problem writers should implement a method of this function so that their problem can be visualized in a variety of contexts including jupyter notebooks, web browsers, or saved as images or animations.</p>
 <p><a id='POMDPModelTools.render' href='#POMDPModelTools.render'>#</a>
 <strong><code>POMDPModelTools.render</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>render(m::Union{MDP,POMDP}, step::NamedTuple)
@@ -160,7 +160,7 @@
 <li><code>o</code> typically corresponds to <code>sp</code>, so it is often be clearer for POMDPs to</li>
 </ul>
 <p>render <code>sp</code> rather than <code>s</code>.</p>
-<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/c7e63f4e4f66cb241f823c75c52d0549e306d2eb/src/visualization.jl#L1-L31' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/JuliaPOMDP/POMDPModelTools.jl/blob/5c7ba974f5e235bb433ad94fc1cdb85cecc9ff79/src/visualization.jl#L1-L31' class='documenter-source'>source</a><br></p>
 <p>Sometimes it is important to have control over how the problem is rendered with different mimetypes. One way to handle this is to have render return a custom type, e.g.</p>
 <pre><code class="julia">struct MyProblemVisualization
     mdp::MyProblem
