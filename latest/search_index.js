@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Convenience",
     "title": "Convenience",
     "category": "section",
-    "text": "POMDPModelTools contains default implementations for some POMDPs.jl functions, including actions, n_actions, action_index, etc. for some obvious cases. This allows some obvious implementations to be skipped.For instance, if an MDP with a Bool action type is created, the obvious actions method is already implemented:julia> using POMDPs; using POMDPModelTools\n\njulia> struct BoolMDP <: MDP{Bool, Bool} end\n\njulia> actions(BoolMDP())\n(true, false)For a complete list of default implementations, see convenient_implementations.jl and distributions_jl.jl."
+    "text": "POMDPModelTools contains default implementations for some POMDPs.jl functions.For a complete list of default implementations, see convenient_implementations.jl and distributions_jl.jl."
 },
 
 {
