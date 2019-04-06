@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Convenience",
     "title": "Convenience",
     "category": "section",
-    "text": "POMDPModelTools contains default implementations for some POMDPs.jl functions.For a complete list of default implementations, see convenient_implementations.jl and distributions_jl.jl."
+    "text": "POMDPModelTools contains default implementations for some POMDPs.jl functions.For a complete list of default implementations, see convenient_implementations.jl."
 },
 
 {
