@@ -181,7 +181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Interface Extensions",
     "title": "POMDPModelTools.generate_sri",
     "category": "function",
-    "text": "Return a tuple containing the next state and reward and information (usually a Dict or nothing) from that step.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
+    "text": "Return a tuple containing the next state and reward and information (usually a NamedTuple, Dict or nothing) from that step.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
 },
 
 {
@@ -189,7 +189,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Interface Extensions",
     "title": "POMDPModelTools.generate_sori",
     "category": "function",
-    "text": "Return a tuple containing the next state, observation, and reward and information (usually a Dict or nothing) from that step.\n\nBy default, returns nothing as info. \n\n\n\n\n\n"
+    "text": "Return a tuple containing the next state, observation, and reward and information (usually a NamedTuple, Dict or nothing) from that step.\n\nBy default, returns nothing as info. \n\n\n\n\n\n"
 },
 
 {
@@ -197,7 +197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Interface Extensions",
     "title": "POMDPModelTools.action_info",
     "category": "function",
-    "text": "a, ai = action_info(policy, x)\n\nReturn a tuple containing the action determined by policy \'p\' at state or belief \'x\' and information (usually a Dict or nothing) from the calculation of that action.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
+    "text": "a, ai = action_info(policy, x)\n\nReturn a tuple containing the action determined by policy \'p\' at state or belief \'x\' and information (usually a NamedTuple, Dict or nothing) from the calculation of that action.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
 },
 
 {
@@ -205,7 +205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Interface Extensions",
     "title": "POMDPModelTools.solve_info",
     "category": "function",
-    "text": "policy, si = solve_info(solver, problem)\n\nReturn a tuple containing the policy determined by a solver and information (usually a Dict or nothing) from the calculation of that policy.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
+    "text": "policy, si = solve_info(solver, problem)\n\nReturn a tuple containing the policy determined by a solver and information (usually a NamedTuple, Dict or nothing) from the calculation of that policy.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
 },
 
 {
@@ -213,7 +213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Interface Extensions",
     "title": "POMDPModelTools.update_info",
     "category": "function",
-    "text": "bp, i = update_info(updater, b, a, o)\n\nReturn a tuple containing the new belief and information (usually a Dict or nothing) from the belief update.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
+    "text": "bp, i = update_info(updater, b, a, o)\n\nReturn a tuple containing the new belief and information (usually a NamedTuple, Dict or nothing) from the belief update.\n\nBy default, returns nothing as info.\n\n\n\n\n\n"
 },
 
 {
