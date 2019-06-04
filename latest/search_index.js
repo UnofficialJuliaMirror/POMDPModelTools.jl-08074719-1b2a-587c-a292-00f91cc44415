@@ -285,7 +285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Model Transformations",
     "title": "POMDPModelTools.UnderlyingMDP",
     "category": "type",
-    "text": "UnderlyingMDP(pomdp)\n\nTransform POMDP pomdp into an MDP where the states are fully observed.\n\n\n\n\n\n"
+    "text": "UnderlyingMDP(m::POMDP)\n\nTransform POMDP m into an MDP where the states are fully observed.\n\nUnderlyingMDP(m::MDP)\n\nReturn m\n\n\n\n\n\n"
 },
 
 {
@@ -294,6 +294,30 @@ var documenterSearchIndex = {"docs": [
     "title": "Underlying MDP",
     "category": "section",
     "text": "UnderlyingMDP"
+},
+
+{
+    "location": "policy_evaluation.html#",
+    "page": "Policy Evaluation",
+    "title": "Policy Evaluation",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "policy_evaluation.html#POMDPModelTools.evaluate",
+    "page": "Policy Evaluation",
+    "title": "POMDPModelTools.evaluate",
+    "category": "function",
+    "text": "evaluate(m::MDP, p::Policy)\nevaluate(m::MDP, p::Policy; rewardfunction=POMDPs.reward)\n\nCalculate the value for a policy on an MDP using the approach in equation 4.2.2 of Kochenderfer, Decision Making Under Uncertainty, 2015.\n\nReturns a DiscreteValueFunction, which maps states to values.\n\nExample\n\nusing POMDPModelTools, POMDPPolicies, POMDPModels\nm = SimpleGridWorld()\nu = evaluate(m, FunctionPolicy(x->:left))\nu([1,1]) # value of always moving left starting at state [1,1]\n\n\n\n\n\n"
+},
+
+{
+    "location": "policy_evaluation.html#Policy-Evaluation-1",
+    "page": "Policy Evaluation",
+    "title": "Policy Evaluation",
+    "category": "section",
+    "text": "The evaluate function provides a policy evaluation tool for MDPs:evaluate"
 },
 
 {
@@ -333,7 +357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Utility Types",
     "title": "Terminal State",
     "category": "section",
-    "text": "TerminalState and its singleton instance terminalstate are available to use for a terminal state in concert with another state type. It has the appropriate type promotion logic to make its use with other types friendly, similar to nothing and missing.note: Note\nNOTE: This is NOT a replacement for the standard POMDPs.jl isterminal function, though isterminal is implemented for the type. It is merely a convenient type to use for terminal states.warning: Warning\nWARNING: Early tests suggest that the Julia 1.0 compiler will not be able to efficiently implement union splitting in cases as  complex as POMDPs, so using a Union for the state type of a problem can currently have a large overhead.TerminalState\nterminalstate"
+    "text": "TerminalState and its singleton instance terminalstate are available to use for a terminal state in concert with another state type. It has the appropriate type promotion logic to make its use with other types friendly, similar to nothing and missing.note: Note\nNOTE: This is NOT a replacement for the standard POMDPs.jl isterminal function, though isterminal is implemented for the type. It is merely a convenient type to use for terminal states.warning: Warning\nWARNING: Early tests (August 2018) suggest that the Julia 1.0 compiler will not be able to efficiently implement union splitting in cases as  complex as POMDPs, so using a Union for the state type of a problem can currently have a large overhead.TerminalState\nterminalstate"
 },
 
 {
