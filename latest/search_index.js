@@ -81,6 +81,30 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "distributions.html#POMDPModelTools.Uniform",
+    "page": "Distributions",
+    "title": "POMDPModelTools.Uniform",
+    "category": "type",
+    "text": "Uniform(collection)\n\nCreate a uniform categorical distribution over a collection of objects.\n\nThe objects in the collection must be unique (this is tested on construction), and will be stored in a Set. To avoid this overhead, use UnsafeUniform.\n\n\n\n\n\n"
+},
+
+{
+    "location": "distributions.html#POMDPModelTools.UnsafeUniform",
+    "page": "Distributions",
+    "title": "POMDPModelTools.UnsafeUniform",
+    "category": "type",
+    "text": "UnsafeUniform(collection)\n\nCreate a uniform categorical distribution over a collection of objects.\n\nNo checks are performed to ensure uniqueness or check whether an object is actually in the set when evaluating the pdf.\n\n\n\n\n\n"
+},
+
+{
+    "location": "distributions.html#Uniform-1",
+    "page": "Distributions",
+    "title": "Uniform",
+    "category": "section",
+    "text": "Uniform\nUnsafeUniform"
+},
+
+{
     "location": "index.html#",
     "page": "About",
     "title": "About",
