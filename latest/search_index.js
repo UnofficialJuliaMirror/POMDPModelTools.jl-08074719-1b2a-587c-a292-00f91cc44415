@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Distributions",
     "title": "Distributions",
     "category": "section",
-    "text": "POMDPModelTools contains several utility distributions to be used in the POMDPs transition and observation functions. These implement the appropriate methods of the functions in the distributions interface."
+    "text": "POMDPModelTools contains several utility distributions to be used in the POMDPs transition and observation functions. These implement the appropriate methods of the functions in the distributions interface.This package also supplies showdistribution for pretty printing distributions as unicode bar graphs to the terminal."
 },
 
 {
@@ -102,6 +102,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Uniform",
     "category": "section",
     "text": "Uniform\nUnsafeUniform"
+},
+
+{
+    "location": "distributions.html#POMDPModelTools.showdistribution",
+    "page": "Distributions",
+    "title": "POMDPModelTools.showdistribution",
+    "category": "function",
+    "text": "showdistribution([io], [mime], d)\n\nShow a UnicodePlots.barplot representation of a distribution.\n\nKeyword Arguments\n\ntitle::String=string(typeof(d))*\" distribution\": title for the barplot. \n\n\n\n\n\n"
+},
+
+{
+    "location": "distributions.html#Pretty-Printing-1",
+    "page": "Distributions",
+    "title": "Pretty Printing",
+    "category": "section",
+    "text": "showdistribution"
 },
 
 {
