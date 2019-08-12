@@ -281,6 +281,78 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "model_transformations.html#POMDPModelTools.SparseTabularMDP",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.SparseTabularMDP",
+    "category": "type",
+    "text": "SparseTabularMDP\n\nAn MDP object where states and actions are integers and the transition is represented by a list of sparse matrices. This data structure can be useful to exploit in vectorized algorithm (e.g. see SparseValueIterationSolver). The recommended way to access the transition and reward matrices is through the provided accessor functions: transition_matrix and reward_vector.\n\nFields\n\nT::Vector{SparseMatrixCSC{Float64, Int64}} The transition model is represented as a vector of sparse matrices (one for each action). T[a][s, sp] the probability of transition from s to sp taking action a.\nR::Array{Float64, 2} The reward is represented as a matrix where the rows are states and the columns actions: R[s, a] is the reward of taking action a in sate s.\nterminal_states::Set{Int64} Stores the terminal states\ndiscount::Float64 The discount factor\n\nConstructors\n\nSparseTabularMDP(mdp::MDP) : One can provide the matrices to the default constructor or one can construct a SparseTabularMDP from any discrete state MDP defined using the explicit interface. \n\nNote that constructing the transition and reward matrices requires to iterate over all the states and can take a while. To learn more information about how to define an MDP with the explicit interface please visit https://juliapomdp.github.io/POMDPs.jl/latest/explicit/ .\n\nSparseTabularMDP(smdp::SparseTabularMDP; transition, reward, discount) : This constructor returns a new sparse MDP that is a copy of the original smdp except for the field specified by the keyword arguments.\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.SparseTabularPOMDP",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.SparseTabularPOMDP",
+    "category": "type",
+    "text": "SparseTabularPOMDP\n\nA POMDP object where states and actions are integers and the transition and observation distributions are represented by lists of sparse matrices. This data structure can be useful to exploit in vectorized algorithms to gain performance (e.g. see SparseValueIterationSolver). The recommended way to access the transition, reward, and observation matrices is through the provided accessor functions: transition_matrix, reward_vector, observation_matrix.\n\nFields\n\nT::Vector{SparseMatrixCSC{Float64, Int64}} The transition model is represented as a vector of sparse matrices (one for each action). T[a][s, sp] the probability of transition from s to sp taking action a.\nR::Array{Float64, 2} The reward is represented as a matrix where the rows are states and the columns actions: R[s, a] is the reward of taking action a in sate s.\nO::Vector{SparseMatrixCSC{Float64, Int64}} The observation model is represented as a vector of sparse matrices (one for each action). O[a][sp, o] is the probability of observing o from state sp after having taken action a.\nterminal_states::Set{Int64} Stores the terminal states\ndiscount::Float64 The discount factor\n\nConstructors\n\nSparseTabularPOMDP(pomdp::POMDP) : One can provide the matrices to the default constructor or one can construct a SparseTabularPOMDP from any discrete state MDP defined using the explicit interface. \n\nNote that constructing the transition and reward matrices requires to iterate over all the states and can take a while. To learn more information about how to define an MDP with the explicit interface please visit https://juliapomdp.github.io/POMDPs.jl/latest/explicit/ .\n\nSparseTabularPOMDP(spomdp::SparseTabularMDP; transition, reward, observation, discount) : This constructor returns a new sparse POMDP that is a copy of the original smdp except for the field specified by the keyword arguments.\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.transition_matrix",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.transition_matrix",
+    "category": "function",
+    "text": "transition_matrix(p::SparseTabularProblem, a)\n\nAccessor function for the transition model of a sparse tabular problem. It returns a sparse matrix containing the transition probabilities when taking action a: T[s, sp] = Pr(sp | s, a).\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.reward_vector",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.reward_vector",
+    "category": "function",
+    "text": "reward_vector(p::SparseTabularProblem, a)\n\nAccessor function for the reward function of a sparse tabular problem. It returns a vector containing the reward for all the states when taking action a: R(s, a).  The length of the return vector is equal to the number of states.\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.observation_matrix",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.observation_matrix",
+    "category": "function",
+    "text": "observation_matrix(p::SparseTabularPOMDP, a::Int64)\n\nAccessor function for the observation model of a sparse tabular POMDP. It returns a sparse matrix containing the observation probabilities when having taken action a: O[sp, o] = Pr(o | sp, a).\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.transition_matrices",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.transition_matrices",
+    "category": "function",
+    "text": "transition_matrices(p::SparseTabularProblem)\n\nAccessor function for the transition model of a sparse tabular problem. It returns a list of sparse matrices for each action of the problem.\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.reward_matrix",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.reward_matrix",
+    "category": "function",
+    "text": "reward_matrix(p::SparseTabularProblem)\n\nAccessor function for the reward matrix R[s, a] of a sparse tabular problem.\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#POMDPModelTools.observation_matrices",
+    "page": "Model Transformations",
+    "title": "POMDPModelTools.observation_matrices",
+    "category": "function",
+    "text": "observation_matrices(p::SparseTabularPOMDP)\n\nAccessor function for the observation model of a sparse tabular POMDP. It returns a list of sparse matrices for each action of the problem.\n\n\n\n\n\n"
+},
+
+{
+    "location": "model_transformations.html#Sparse-Tabular-MDPs-and-POMDPs-1",
+    "page": "Model Transformations",
+    "title": "Sparse Tabular MDPs and POMDPs",
+    "category": "section",
+    "text": "The SparseTabularMDP and SparseTabularPOMDP represents discrete problems defined using the explicit interface. The transition and observation models are represented using sparse matrices. Solver writers can leverage these data structures to write efficient vectorized code. A problem writer can define its problem using the explicit interface and it can be automatically converted to a sparse tabular representation by calling the constructors SparseTabularMDP(::MDP) or SparseTabularPOMDP(::POMDP). See the following docs to know more about the matrix representation and how to access the fields of the SparseTabular objects:SparseTabularMDP\nSparseTabularPOMDP\ntransition_matrix\nreward_vector\nobservation_matrix\ntransition_matrices\nreward_matrix\nobservation_matrices"
+},
+
+{
     "location": "model_transformations.html#POMDPModelTools.FullyObservablePOMDP",
     "page": "Model Transformations",
     "title": "POMDPModelTools.FullyObservablePOMDP",
